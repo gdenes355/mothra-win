@@ -8,6 +8,9 @@ from skimage.transform import rotate
 from skimage.util import img_as_ubyte
 from mothra.misc import AlbumentationsTransform, label_func
 
+if os.name == 'nt':
+    import pathlib
+    pathlib.PosixPath = pathlib.WindowsPath
 
 WSPACE_SUBPLOTS = 0.7
 
@@ -155,7 +158,7 @@ def main():
             if plot_level > 0:
                 output_path = os.path.normpath(
                     os.path.join(args.output_folder, image_name)
-                    )
+                )
                 dpi = args.dpi
                 if plot_level == 2:
                     dpi = int(1.5 * args.dpi)
